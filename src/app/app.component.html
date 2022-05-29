@@ -1,12 +1,12 @@
 <app-header></app-header>
 <div class="flex w-2/4 mt-2 mx-auto justify-around">
-  <button mat-raised-button (click)="toggle('eleve')" [ngClass]="showElement == 'eleve' ? 'bg-gray-600': '' " class="bg-yellow-500 rounded-lg w-32 text-white p-2">
+  <button mat-raised-button (click)="toggle('eleve')" [ngClass]="showElement==='eleve' ? 'bg-gray-600': 'bg-yellow-500' " class=" rounded-lg w-32 text-white p-2">
    <mat-icon>person</mat-icon> Eléves <span class="ml-1" matBadge="{{students.length}}"  matBadgeOverlap="false"></span>
   </button>
-  <button mat-raised-button (click)="toggle('classe')" [ngClass]="showElement == 'classe' ? 'bg-gray-600': '' " class="bg-yellow-500 w-32 p-2 rounded-md text-white">
+  <button mat-raised-button (click)="toggle('classe')" [ngClass]="showElement==='classe' ? 'bg-gray-600': 'bg-yellow-500' " class=" w-32 p-2 rounded-md text-white">
     <mat-icon>school</mat-icon> Classes <span class="ml-1" matBadge="{{classes.length}}"  matBadgeOverlap="false"></span>
   </button>
-  <button mat-raised-button (click)="toggle('affectation')" [ngClass]="showElement == 'affectation' ? 'bg-gray-600': '' " class="bg-yellow-500 w-32 p-2 rounded-md text-white">
+  <button mat-raised-button (click)="toggle('affectation')" [ngClass]="showElement==='affectation' ? 'bg-gray-600': 'bg-yellow-500' " class="  w-32 p-2 rounded-md text-white">
     <mat-icon>work</mat-icon> Affectation <span class="ml-1" matBadge="{{affectations.length}}"  matBadgeOverlap="false"></span>
   </button>
   <button mat-stroked-button onclick="location.reload()" class="rounded-md text-gray-500">
