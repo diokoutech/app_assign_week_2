@@ -149,12 +149,18 @@ export class AppComponent {
     if(this.codeClasse !='' && this.matriculeEleve !=''){
       let eleveR = this.students.find((ele) => ele.matricule == this.matriculeEleve);
       let classeR = this.classes.find((cla) => cla.code == this.codeClasse);
-      let idNew = this.affectations.length;
-      this.affectations.push({
-        id: idNew,
-        classe: new Classe(classeR?.code,classeR?.nomination),
-        eleve: new Student(eleveR?.matricule,eleveR?.name,eleveR?.lastName,eleveR?.date_naiss) ,
-      })
+      let affected = this.affectations.find((aff) => aff.eleve.matricule == eleveR?.matricule && aff.classe.code == classeR?.code )
+      if(affected){
+        this.alerter("deja enregistrée !");
+        return ;
+      }else{
+        let idNew = this.affectations.length;
+        this.affectations.push({
+          id: idNew,
+          classe: new Classe(classeR?.code,classeR?.nomination),
+          eleve: new Student(eleveR?.matricule,eleveR?.name,eleveR?.lastName,eleveR?.date_naiss) ,
+        })
+      }
       this.resetAffectation();
       this.alerter('Affectation de l\'éleve avec succès !');
     }else{
@@ -162,7 +168,10 @@ export class AppComponent {
     }
   }
   editAffectation(id:number){
-    alert('edit affectation')
+    console.log(" id number ",id);
+    let aff = this.affectations.find((aff) => aff.id == id);
+    this.matriculeEleve = aff?.eleve.matricule ?? '';
+    this.codeClasse = aff?.classe.code ?? '';
   }
   resetAffectation(){
     this.matriculeEleve ='';
