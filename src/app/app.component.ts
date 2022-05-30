@@ -155,6 +155,8 @@ export class AppComponent {
         classe: new Classe(classeR?.code,classeR?.nomination),
         eleve: new Student(eleveR?.matricule,eleveR?.name,eleveR?.lastName,eleveR?.date_naiss) ,
       })
+      this.resetAffectation();
+      this.alerter('Affectation de l\'éleve avec succès !');
     }else{
       Swal.fire('Affectation','Veuillez remplir tous les champs','error');
     }
