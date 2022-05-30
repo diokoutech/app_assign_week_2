@@ -1,13 +1,17 @@
 <app-header></app-header>
-<div class="flex w-2/4 mt-2 mx-auto justify-around">
-  <button mat-raised-button (click)="toggle('eleve')" [ngClass]="showElement==='eleve' ? 'bg-gray-600': 'bg-yellow-500' " class=" rounded-lg w-32 text-white p-2">
-   <mat-icon>person</mat-icon> Eléves <span class="ml-1" matBadge="{{students.length}}"  matBadgeOverlap="false"></span>
+<div class="flex w-2/4 mt-2 mb-4 mx-auto justify-around">
+  <button mat-raised-button (click)="toggle('eleve')"
+    [ngClass]="showElement==='eleve' ? 'bg-gray-600': 'bg-yellow-500' " class=" rounded-lg w-32 text-white p-2">
+    <mat-icon>person</mat-icon> Eléves <span class="ml-1" matBadge="{{students.length}}" matBadgeOverlap="false"></span>
   </button>
-  <button mat-raised-button (click)="toggle('classe')" [ngClass]="showElement==='classe' ? 'bg-gray-600': 'bg-yellow-500' " class=" w-32 p-2 rounded-md text-white">
-    <mat-icon>school</mat-icon> Classes <span class="ml-1" matBadge="{{classes.length}}"  matBadgeOverlap="false"></span>
+  <button mat-raised-button (click)="toggle('classe')"
+    [ngClass]="showElement==='classe' ? 'bg-gray-600': 'bg-yellow-500' " class=" w-32 p-2 rounded-md text-white">
+    <mat-icon>school</mat-icon> Classes <span class="ml-1" matBadge="{{classes.length}}" matBadgeOverlap="false"></span>
   </button>
-  <button mat-raised-button (click)="toggle('affectation')" [ngClass]="showElement==='affectation' ? 'bg-gray-600': 'bg-yellow-500' " class="  w-32 p-2 rounded-md text-white">
-    <mat-icon>work</mat-icon> Affectation <span class="ml-1" matBadge="{{affectations.length}}"  matBadgeOverlap="false"></span>
+  <button mat-raised-button (click)="toggle('affectation')"
+    [ngClass]="showElement==='affectation' ? 'bg-gray-600': 'bg-yellow-500' " class="  w-32 p-2 rounded-md text-white">
+    <mat-icon>work</mat-icon> Affectation <span class="ml-1" matBadge="{{affectations.length}}"
+      matBadgeOverlap="false"></span>
   </button>
   <button mat-stroked-button onclick="location.reload()" class="rounded-md text-gray-500">
     <mat-icon>refresh</mat-icon>
@@ -20,11 +24,11 @@
     <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-2/4">
       <thead>
         <tr>
-          <th  class="p-4">Matricule</th>
-          <th  class="p-4">Nom</th>
-          <th  class="p-4">Prenom</th>
-          <th  class="p-4">Date de naissance</th>
-          <th  class="p-4">actions</th>
+          <th class="p-4">Matricule</th>
+          <th class="p-4">Nom</th>
+          <th class="p-4">Prenom</th>
+          <th class="p-4">Date de naissance</th>
+          <th class="p-4">actions</th>
         </tr>
       </thead>
       <tbody>
@@ -34,8 +38,12 @@
           <td>{{ item.lastName }}</td>
           <td>{{ item.date_naiss | date }}</td>
           <td>
-            <button mat-button (click)="deleteEleve(item.matricule)" class="text-red-500 text-white" ><mat-icon>delete</mat-icon></button>
-            <button mat-button (click)="edit(item.matricule)" class="text-gray-500 text-white"><mat-icon> edit </mat-icon></button>
+            <button mat-button (click)="deleteEleve(item.matricule)" class="text-red-500 text-white">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button (click)="edit(item.matricule)" class="text-gray-500 text-white">
+              <mat-icon> edit </mat-icon>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -44,26 +52,33 @@
     <!-- form part -->
     <div class="form w-1/3">
       <form action="" (ngSubmit)="saveEleve(student.matricule)">
-      <p>
-      <label for="matricule">Matricule</label> <br>
-      <input required type="text" name="matricule" id="matricule" class="border-2 w-full p-2 border-yellow-500 rounded-md" [(ngModel)]="student.matricule" placeholder="matricule"> 
-      </p>
-      <p>
-        <label for="nom">Nom</label> <br>
-        <input  required type="text" name="nom" id="nom" class="border-2 p-2 w-full border-yellow-500" placeholder="nom" [(ngModel)]="student.name"> 
-      </p>
-      <p class="block ">
-        <label for="prenom">Prenom</label> <br>
-        <input  required type="text" name="prenom" id="prenom" class="border-2 p-2 w-full border-yellow-500" placeholder="prenom" [(ngModel)]="student.lastName">
-      </p>
-      <p class="block w-100">
-        <label for="date_naiss">Date de naissance</label> <br>
-        <input  required type="date" name="date_naiss" id="date_naiss" class="border-2 w-full p-2 border-yellow-500" [(ngModel)]="student.date_naiss" > 
-      </p>
-      <p class="mt-3 "> 
-        <button type="submit" mat-flat-button class="bg-yellow-500 w-full text-white" ><mat-icon>save</mat-icon> Save</button>
-      </p>
-    </form>
+        <p>
+          <label for="matricule">Matricule</label> <br>
+          <input required type="text" name="matricule" id="matricule"
+            class="border-2 w-full p-2 border-yellow-500 rounded-md" [(ngModel)]="student.matricule"
+            placeholder="matricule">
+        </p>
+        <p>
+          <label for="nom">Nom</label> <br>
+          <input required type="text" name="nom" id="nom" class="border-2 p-2 w-full border-yellow-500"
+            placeholder="nom" [(ngModel)]="student.name">
+        </p>
+        <p class="block ">
+          <label for="prenom">Prenom</label> <br>
+          <input required type="text" name="prenom" id="prenom" class="border-2 p-2 w-full border-yellow-500"
+            placeholder="prenom" [(ngModel)]="student.lastName">
+        </p>
+        <p class="block w-100">
+          <label for="date_naiss">Date de naissance</label> <br>
+          <input required type="date" name="date_naiss" id="date_naiss" class="border-2 w-full p-2 border-yellow-500"
+            [(ngModel)]="student.date_naiss">
+        </p>
+        <p class="mt-3 ">
+          <button type="submit" mat-flat-button class="bg-yellow-500 w-full text-white">
+            <mat-icon>save</mat-icon> Save
+          </button>
+        </p>
+      </form>
     </div>
     <!-- end of form part -->
   </div>
@@ -73,9 +88,9 @@
     <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-2/4">
       <thead>
         <tr>
-          <th  class="p-4">Code</th>
-          <th  class="p-4">Nomination</th>
-          <th  class="p-4">actions</th>
+          <th class="p-4">Code</th>
+          <th class="p-4">Nomination</th>
+          <th class="p-4">actions</th>
         </tr>
       </thead>
       <tbody>
@@ -83,8 +98,12 @@
           <td>{{ item.code }}</td>
           <td>{{ item.nomination }}</td>
           <td>
-            <button mat-button (click)="deleteClasse(item.code)" class="text-red-500 text-white" ><mat-icon>delete</mat-icon></button>
-            <button mat-button (click)="editClasse(item.code)" class="text-gray-500 text-white"><mat-icon> edit </mat-icon></button>
+            <button mat-button (click)="deleteClasse(item.code)" class="text-red-500 text-white">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button (click)="editClasse(item.code)" class="text-gray-500 text-white">
+              <mat-icon> edit </mat-icon>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -92,62 +111,81 @@
     <!-- form  -->
     <div class="form w-1/3">
       <form action="" (ngSubmit)="saveClasse(classe.code)">
-      <p>
-      <label for="code">code</label> <br>
-      <input required type="text" [(ngModel)]="classe.code" name="code" id="code" class="border-2 w-full p-2 border-yellow-500 rounded-md" placeholder="code"> 
-      </p>
-      <p>
-        <label for="nomination">nomination</label> <br>
-        <input  required type="text" [(ngModel)]="classe.nomination" name="nomination" id="nomination" class="border-2 p-2 w-full border-yellow-500" placeholder="nomination"> 
-      </p>
-      <p class="mt-3 "> 
-        <button type="submit" mat-flat-button class="bg-yellow-500 w-full text-white" ><mat-icon>save</mat-icon> Save</button>
-      </p>
-    </form>
+        <p>
+          <label for="code">code</label> <br>
+          <input required type="text" [(ngModel)]="classe.code" name="code" id="code"
+            class="border-2 w-full p-2 border-yellow-500 rounded-md" placeholder="code">
+        </p>
+        <p>
+          <label for="nomination">nomination</label> <br>
+          <input required type="text" [(ngModel)]="classe.nomination" name="nomination" id="nomination"
+            class="border-2 p-2 w-full border-yellow-500" placeholder="nomination">
+        </p>
+        <p class="mt-3 ">
+          <button type="submit" mat-flat-button class="bg-yellow-500 w-full text-white">
+            <mat-icon>save</mat-icon> Save
+          </button>
+        </p>
+      </form>
     </div>
   </div>
-  <div class="flex justify-around" *ngIf="showElement == 'affectation'" >
-    <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-2/4">
+  <!-- end part of classe -->
+  <!-- part of affectation -->
+  <div class="flex justify-between" *ngIf="showElement == 'affectation'">
+    <!-- table affectation -->
+    <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-3/4">
       <thead>
         <tr>
-          <th  class="p-4">Nom eleve</th>
-          <th  class="p-4">Prenom Eleve</th>
-          <th  class="p-4">Nom classe </th>
-          <th  class="p-4">Code classe </th>
+          <th class="p-4">Matricule eleve</th>
+          <th class="p-4">Nom eleve</th>
+          <th class="p-4">Prenom Eleve</th>
+          <th class="p-4">Nom classe </th>
+          <th class="p-4">Code classe </th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-2" *ngFor="let item of affectations">
+          <td>{{ item.eleve?.matricule }}</td>
           <td>{{ item.eleve?.name }}</td>
           <td>{{ item.eleve?.lastName }}</td>
           <td>{{ item.classe.nomination }}</td>
           <td>{{ item.classe.code }}</td>
           <td>
-            <button mat-button (click)="deleteAffectation(item.id)" class="text-red-500 text-white" ><mat-icon>delete</mat-icon></button>
-            <button mat-button (click)="editAffectation(item.id)" class="text-gray-500 text-white"><mat-icon> edit </mat-icon></button>
+            <button mat-button (click)="deleteAffectation(item.id)" class="text-red-500 text-white">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button (click)="editAffectation(item.id)" class="text-gray-500 text-white">
+              <mat-icon> edit </mat-icon>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="w-1/3">
+    <!-- form affectation -->
+    <div class="w-1/4 text-center mx-auto">
       <form action="" (ngSubmit)="saveAffectation(affectation.id)">
         <p>
-        <label for="eleve">Choisir un éléve </label> <br>
-        <select required name="eleve" (change)="verifEleve()" [(ngModel)]="affectation.eleve" class="border-2 w-full p-2 border-yellow-500 rounded-md form-select"> 
-          <option value="" selected> --  choisir un éléve -- </option>
-          <option *ngFor="let item of students" [value]="item.matricule">{{ item.name }} {{ item.lastName }} {{ item.date_naiss  }} </option>
-        </select>
+          <label for="eleve">Choisir un éléve </label> <br>
+          <select required name="eleve" (change)="verifEleve()" [(ngModel)]="matriculeEleve"
+            class="border-2 w-90 p-2 border-yellow-500 rounded-md form-select">
+            <option value="" selected> -- choisir un éléve -- </option>
+            <option *ngFor="let item of students" [value]="item.matricule">{{ item.name }} {{ item.lastName }}
+              {{ item.date_naiss  }} </option>
+          </select>
         </p>
         <p>
-        <label for="eleve">Choisir une classe </label> <br>
-        <select required name="classe" [(ngModel)]="affectation.classe" class="border-2 w-full p-2 border-yellow-500 rounded-md form-select"> 
-          <option value="" selected> --  choisir une classe -- </option>
-          <option *ngFor="let item of classes" [value]="item.code">{{ item.code }} {{ item.nomination }} </option>
-        </select>
+          <label for="eleve">Choisir une classe </label> <br>
+          <select required name="classe" [(ngModel)]="codeClasse"
+            class="border-2 w-90  p-2 border-yellow-500 rounded-md form-select">
+            <option value="" selected> -- choisir une classe -- </option>
+            <option *ngFor="let item of classes" [value]="item.code">{{ item.code }} {{ item.nomination }} </option>
+          </select>
         </p>
-        <p class="mt-3 "> 
-          <button type="submit" mat-flat-button class="bg-yellow-500 w-full text-white" ><mat-icon>save</mat-icon> Save</button>
+        <p class="mt-3 ">
+          <button type="submit" mat-flat-button class="bg-yellow-500 w-90 text-white">
+            <mat-icon>save</mat-icon> Save
+          </button>
         </p>
       </form>
     </div>

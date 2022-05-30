@@ -34,18 +34,18 @@ export class AppComponent {
     {code : 'TSL1' , nomination : 'Terminale Serie L1'}
   ];
   affectations = [
-    {id: 1,eleve : this.students[3], classe: this.classes[2]},
-    {id: 2,eleve : this.students[0], classe: this.classes[2]},
-    {id: 3,eleve : this.students[1], classe: this.classes[0]},
-    {id:4,eleve : this.students[4], classe: this.classes[1]},
+    {id: 0,eleve : this.students[3], classe: this.classes[2]},
+    {id: 1,eleve : this.students[0], classe: this.classes[2]},
+    {id: 2,eleve : this.students[1], classe: this.classes[0]},
+    {id:3,eleve : this.students[4], classe: this.classes[1]},
   ];
-
+  matriculeEleve :string ='';
+  codeClasse :string ='';
   //functions
   public deleteEleve(mat:string){
     let response = confirm('Voulez vous supprimer ce éléve !');
     if(response == true){
       let index = this.students.findIndex((t)=> t.matricule == mat);
-      console.log(index);
       this.students.splice(index,1);
       this.alerter('Suppression de l\'éléve avec succès');
     }else{
@@ -65,7 +65,7 @@ export class AppComponent {
       this.students[indexElement].name=this.student.name;
       this.students[indexElement].lastName=this.student.lastName;
       this.students[indexElement].date_naiss=this.student.date_naiss;
-      alert('Modification avec succès !');
+      this.alerter('Modification avec succès !');
     }else{
       // add new
       let student=this.student;
@@ -75,8 +75,7 @@ export class AppComponent {
         date_naiss: student.date_naiss,
         lastName: student.lastName,
       });
-      console.log(this.students);
-      alert('Enregistrement avec succès !');
+      this.alerter('Enregistrement avec succès !');
     }
     this.resetEleve();
   }
@@ -94,7 +93,6 @@ export class AppComponent {
     let response = confirm('Voulez vous supprimer cette classe !');
     if(response == true){
       let index = this.classes.findIndex((t)=> t.code == code);
-      console.log(index);
       this.classes.splice(index,1);
       this.alerter('Suppression de la classe ' + this.classes[index].nomination + ' avec succès');
     }else{
@@ -125,7 +123,17 @@ export class AppComponent {
   this.resetClasse();
   }
   public verifEleve() {
-    
+    let affected = this.affectations.find((aff)=> aff.eleve.matricule == this.matriculeEleve);
+    if(affected){
+      // alert('trouve');
+      this.alerter('cet éléve a deja été affecté !');
+      this.resetAffectation()
+    }else{
+      let eleve = this.students.find((ele) => ele.matricule == this.matriculeEleve);
+      let classe = this.classes.find((cla) => cla.code == this.codeClasse);
+      let idNew = this.affectations.length;
+      console.log("eleve",eleve,"classe",classe,"id", idNew);
+    }
   }
   deleteAffectation(id:number){
     let response = confirm('Voulez vous supprimer cette affectation !');
@@ -138,10 +146,25 @@ export class AppComponent {
     }
   }
   public saveAffectation(id:number){
-    alert('save affectation');
+    if(this.codeClasse !='' && this.matriculeEleve !=''){
+      let eleveR = this.students.find((ele) => ele.matricule == this.matriculeEleve);
+      let classeR = this.classes.find((cla) => cla.code == this.codeClasse);
+      let idNew = this.affectations.length;
+      this.affectations.push({
+        id: idNew,
+        classe: new Classe(classeR?.code,classeR?.nomination),
+        eleve: new Student(eleveR?.matricule,eleveR?.name,eleveR?.lastName,eleveR?.date_naiss) ,
+      })
+    }else{
+      Swal.fire('Affectation','Veuillez remplir tous les champs','error');
+    }
   }
   editAffectation(id:number){
     alert('edit affectation')
+  }
+  resetAffectation(){
+    this.matriculeEleve ='';
+    this.codeClasse ='';
   }
   public alerter(msg:string,ic:string ="success"){
     let i = ic;
