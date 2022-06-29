@@ -43,7 +43,7 @@ export class AppComponent {
   codeClasse :string ='';
   //functions
   public deleteEleve(mat:string){
-    let response = confirm('Voulez vous supprimer ce éléve !');
+    let response = confirm('Voulez vous supprimer cet éléve !');
     if(response == true){
       let index = this.students.findIndex((t)=> t.matricule == mat);
       this.students.splice(index,1);

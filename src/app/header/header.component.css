@@ -1,4 +1,4 @@
-h1::first-letter{
+span::first-letter{
     color: orange;
     font-size: 35px;
     font-weight: bold;
