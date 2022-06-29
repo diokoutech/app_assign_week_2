@@ -5,13 +5,13 @@
   <nav>
     <ul class="flex items-center p-4 justify-center">
       <li>
-      <a href="/eleve" mat-button><mat-icon>person</mat-icon> Eleves </a>
+      <a [routerLink]="['/eleve']" routerLinkActive="text-yellow-500" mat-button><mat-icon>person</mat-icon> Eleves </a>
       </li>
       <li>
-        <a href="/classe" mat-button><mat-icon>school</mat-icon> Classes </a>
+        <a [routerLink]="['/classe']" routerLinkActive="text-yellow-500" mat-button><mat-icon>school</mat-icon> Classes </a>
         </li>
         <li>
-          <a href="/affectation" mat-button><mat-icon>work</mat-icon> Affectations </a>
+          <a [routerLink]="['/affectation']" routerLinkActive="text-yellow-500"   mat-button><mat-icon>work</mat-icon> Affectations </a>
         </li>
     </ul>
   </nav>

@@ -1,1 +1,60 @@
-<p>affectation works!</p>
+  <div class="flex justify-between">
+    <!-- table affectation -->
+    <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-3/4">
+      <thead>
+        <tr>
+          <th class="p-4">Matricule eleve</th>
+          <th class="p-4">Nom eleve</th>
+          <th class="p-4">Prenom Eleve</th>
+          <th class="p-4">Nom classe </th>
+          <th class="p-4">Code classe </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-2" *ngFor="let item of affectations">
+          <td>{{ item.eleve?.matricule }}</td>
+          <td>{{ item.eleve?.name }}</td>
+          <td>{{ item.eleve?.lastName }}</td>
+          <td>{{ item.classe.nomination }}</td>
+          <td>{{ item.classe.code }}</td>
+          <td>
+            <button mat-button (click)="deleteAffectation(item.id)" class="text-red-500 text-white">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button (click)="editAffectation(item.id)" class="text-gray-500 text-white">
+              <mat-icon> edit </mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- form affectation -->
+    <div class="w-1/4 ml-4 text-center mx-auto">
+      <h1 class="text-2xl text-center" >Formaulaire d'affectation </h1>
+      <form action="" (ngSubmit)="saveAffectation(affectation.id)">
+        <p>
+          <label for="eleve">Choisir un éléve </label> <br>
+          <select required name="eleve" (change)="verifEleve()" [(ngModel)]="matriculeEleve"
+            class="border-2 w-full p-2 border-yellow-500 rounded-md form-select">
+            <option value="" selected> -- choisir un éléve -- </option>
+            <option *ngFor="let item of students" [value]="item.matricule">{{ item.name }} {{ item.lastName }}
+              {{ item.date_naiss  }} </option>
+          </select>
+        </p>
+        <p>
+          <label for="eleve">Choisir une classe </label> <br>
+          <select required name="classe" [(ngModel)]="codeClasse"
+            class="border-2 w-full  p-2 border-yellow-500 rounded-md form-select">
+            <option value="" selected> -- choisir une classe -- </option>
+            <option *ngFor="let item of classes" [value]="item.code">{{ item.code }} {{ item.nomination }} </option>
+          </select>
+        </p>
+        <p class="mt-3 ">
+          <button type="submit" mat-flat-button class="bg-yellow-500 w-90 text-white">
+            <mat-icon>save</mat-icon> Save
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
