@@ -4,6 +4,7 @@
     <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-2/4">
       <thead>
         <tr>
+          <!-- <th class="p-4">Id</th> -->
           <th class="p-4">Matricule</th>
           <th class="p-4">Nom</th>
           <th class="p-4">Prenom</th>
@@ -13,15 +14,16 @@
       </thead>
       <tbody>
         <tr class="border-b border-2" *ngFor="let item of students">
+          <!-- <td>{{ item._id }}</td> -->
           <td>{{ item.matricule }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.lastName }}</td>
+          <td>{{ item.nom }}</td>
+          <td>{{ item.prenom }}</td>
           <td>{{ item.date_naiss | date }}</td>
           <td>
-            <button mat-button (click)="deleteEleve(item.matricule)" class="text-red-500 text-white">
+            <button mat-button (click)="deleteEleve(item._id)" onclick="return confirm('Voulez vous supprimer')" class="text-red-500 text-white">
               <mat-icon>delete</mat-icon>
             </button>
-            <button mat-button (click)="edit(item.matricule)" class="text-gray-500 text-white">
+            <button mat-button (click)="edit(item._id)" class="text-gray-500 text-white">
               <mat-icon> edit </mat-icon>
             </button>
           </td>
@@ -42,12 +44,12 @@
         <p>
           <label for="nom">Nom</label> <br>
           <input required type="text" name="nom" id="nom" class="border-2 p-2 w-full border-yellow-500"
-            placeholder="nom" [(ngModel)]="student.name">
+            placeholder="nom" [(ngModel)]="student.nom">
         </p>
         <p class="block ">
           <label for="prenom">Prenom</label> <br>
           <input required type="text" name="prenom" id="prenom" class="border-2 p-2 w-full border-yellow-500"
-            placeholder="prenom" [(ngModel)]="student.lastName">
+            placeholder="prenom" [(ngModel)]="student.prenom">
         </p>
         <p class="block w-100">
           <label for="date_naiss">Date de naissance</label> <br>

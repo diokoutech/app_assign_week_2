@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="border-b border-2" *ngFor="let item of affectations">
+        <!-- <tr class="border-b border-2" *ngFor="let item of affectations ? null">
           <td>{{ item.eleve?.matricule }}</td>
           <td>{{ item.eleve?.name }}</td>
           <td>{{ item.eleve?.lastName }}</td>
@@ -26,13 +26,13 @@
               <mat-icon> edit </mat-icon>
             </button>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
     <!-- form affectation -->
     <div class="w-1/4 text-center mx-auto">
       <h1 class="text-2xl text-center" >Formaulaire d'affectation </h1>
-      <form action="" (ngSubmit)="saveAffectation(affectation.id)">
+      <!-- <form action="" (ngSubmit)="saveAffectation(affectation.id)">
         <p>
           <label for="eleve">Choisir un éléve </label> <br>
           <select required name="eleve" (change)="verifEleve()" [(ngModel)]="matriculeEleve"
@@ -55,6 +55,6 @@
             <mat-icon>save</mat-icon> Save
           </button>
         </p>
-      </form>
+      </form> -->
     </div>
   </div>

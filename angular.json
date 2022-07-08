@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app_assignement_week_2:build"
+            "browserTarget": "app_assignement_week_2:build",
           }
         },
         "test": {

@@ -14,7 +14,7 @@ import { StudentComponent } from './components/student/student.component';
 import { AffectationComponent } from './components/affectation/affectation.component';
 import { ClasseComponent } from './components/classe/classe.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { HomeComponent } from './components/home/home.component';
     MatButtonModule,
     MatIconModule,
     MatBadgeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
