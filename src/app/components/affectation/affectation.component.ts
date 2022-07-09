@@ -3,62 +3,113 @@ import Swal from 'sweetalert2';
 import { Classe } from 'src/app/classe';
 import { Student } from 'src/app/student';
 import { Affectation } from 'src/app/affectation';
+import { AffectationService } from 'src/app/services/affectation.service';
+import { EleveService } from 'src/app/services/eleve.service';
+import { ClasseService } from 'src/app/services/classe.service';
 @Component({
   selector: 'app-affectation',
   templateUrl: './affectation.component.html',
   styleUrls: ['./affectation.component.css']
 })
 export class AffectationComponent implements OnInit {
-
-  constructor() { }
+  private response:any;
+  constructor(private serviceAffectation:AffectationService,private serviceEleve:EleveService,private serviceClasse:ClasseService) { 
+    this.affectations = Array<Affectation>();
+    this.students = Array<Student>();
+    this.classes = Array<Classe>();
+  }
 
   ngOnInit(): void {
+   this.getAll();
+    this.serviceEleve.getAll().subscribe(data=>{
+      this.response = data;
+      console.log(data,'eleves');
+      this.students = this.response;
+    },error=>{
+      console.log(error);
+    });
+    this.serviceClasse.getAll().subscribe(data=>{
+      this.response = data;
+      this.classes = this.response;
+      console.log('classe',data);
+    },error=>{
+      console.log(error);
+    });
   }
-  matriculeEleve :string ='';
-  codeClasse :string ='';
-  student:Student ={nom:'',date_naiss:'',matricule:'',prenom: ''};
-  affectation:Affectation ={id:0,eleve: new Student(),classe : new Classe()};
-  public classe:Classe ={code:'', nomination:''};
-  showElement = 'eleve';
-  date_naiss = '2022-06-05';
+  affectations: Array<any>;
+  students: Array<any>;
+  classes: Array<any>;
+  student:any;
+  classe:any;
+  affectation:Affectation ={eleve: new Student(),classe : new Classe()};
 
-  public verifEleve() {
+  public getAll() {
+    this.serviceAffectation.findAll().subscribe(data=>{
+      this.response = data;
+      this.affectations = this.response;
+      console.log(data,'affectations');
+    },error=>{
+      console.log(error);
+    });
+  }
 
+  deleteAffectation(id:string){
+    let response  = confirm('Voulez vous supprimer !');
+    if(response){
+      let index = this.affectations.findIndex((ele) => ele._id == id);
+      this.affectations.splice(index,1);
+      this.serviceAffectation.deleteOne(id).subscribe(data=>{
+        console.log(data);
+        // if(data.status == true){
+          this.alerter('Suppression de l\'affectation avec succès !');
+        // }else{
+        //   this.alerter('Erreur de suppression !');
+        // }
+      },error=>{
+        console.log(error);
+      });
+    }
   }
-  deleteAffectation(id:number){
-
+  public saveAffectation(id:any = null){
+    let eleve = this.students.find((stud)=> stud._id == this.student);
+    let classe = this.classes.find((cla)=> cla._id == this.classe);
+    let affect = {
+      "eleve" : eleve,
+      "classe" : classe
+    };
+    console.log(affect);
+    if(id == null){
+      this.serviceAffectation.insertOne(affect).subscribe(data=>{
+        this.affectations.push(data);
+        console.log(data);
+        this.alerter('Ajout Succes !');
+        this.resetAffectation();
+      },error=>{
+        this.alerter('Erreur ajout !');
+        console.log('error',error);
+      })
+    }else{
+      this.serviceAffectation.updateOne(id,affect).subscribe(data=>{
+        console.log(data);
+        this.getAll();
+        this.alerter('Modification Success !');
+        this.resetAffectation();
+      },error=>{
+        this.alerter('Erreur Modification !');
+        console.log('error',error);
+      })
+    }
   }
-  public saveAffectation(id:number){
-    // if(this.codeClasse !='' && this.matriculeEleve !=''){
-    //   let eleveR = this.students.find((ele) => ele.matricule == this.matriculeEleve);
-    //   let classeR = this.classes.find((cla) => cla.code == this.codeClasse);
-    //   let affected = this.affectations.find((aff) => aff.eleve.matricule == eleveR?.matricule && aff.classe.code == classeR?.code )
-    //   if(affected){
-    //     this.alerter("deja enregistrée !");
-    //     return ;
-    //   }else{
-    //     let idNew = this.affectations.length;
-    //     this.affectations.push({
-    //       id: idNew,
-    //       classe: new Classe(classeR?.code,classeR?.nomination),
-    //       eleve: new Student(eleveR?.matricule,eleveR?.nom,eleveR?.prenom,eleveR?.date_naiss) ,
-    //     })
-    //   }
-    //   this.resetAffectation();
-    //   this.alerter('Affectation de l\'éleve avec succès !');
-    // }else{
-    //   Swal.fire('Affectation','Veuillez remplir tous les champs','error');
-    // }
-  }
-  editAffectation(id:number){
-    // console.log(" id number ",id);
-    // let aff = this.affectations.find((aff) => aff.id == id);
-    // this.matriculeEleve = aff?.eleve.matricule ?? '';
-    // this.codeClasse = aff?.classe.code ?? '';
+  editAffectation(item:any){
+    console.log(item,' item');
+    this.affectation = item;
+    this.student = item.eleve._id;
+    this.classe = item.classe._id;
   }
   resetAffectation(){
-    this.matriculeEleve ='';
-    this.codeClasse ='';
+    this.classe ='';
+    this.student ='';
+    this.affectation = new Affectation();
   }
   public alerter(msg:string,ic:string ="success"){
     let i = ic;

@@ -20,7 +20,7 @@
           <td>{{ item.prenom }}</td>
           <td>{{ item.date_naiss | date }}</td>
           <td>
-            <button mat-button (click)="deleteEleve(item._id)" onclick="return confirm('Voulez vous supprimer')" class="text-red-500 text-white">
+            <button mat-button (click)="deleteEleve(item._id)" class="text-red-500 text-white">
               <mat-icon>delete</mat-icon>
             </button>
             <button mat-button (click)="edit(item._id)" class="text-gray-500 text-white">

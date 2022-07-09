@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/classe';
+import { ClasseService } from 'src/app/services/classe.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-classe',
@@ -7,52 +8,70 @@ import Swal from 'sweetalert2';
   styleUrls: ['./classe.component.css']
 })
 export class ClasseComponent implements OnInit {
-  constructor() { }
-  ngOnInit(): void {
+  constructor(private serviceClasse:ClasseService) { 
+    this.classes = new Array<Classe>();
   }
-  classes = [
-    {code : 'TS1' , nomination : 'Terminale Serie S1'},
-    {code : 'TS2' , nomination : 'Terminale Serie S2'},
-    {code : 'TS3' , nomination : 'Terminale Serie S3'},
-    {code : 'TSL2' , nomination : 'Terminale Serie L2'},
-    {code : 'TSL1' , nomination : 'Terminale Serie L1'}
-  ];
+  ngOnInit(): void {
+    this.serviceClasse.getAll().subscribe(data=>{
+      console.log('data',data);
+      this.response = data;
+      this.classes =this.response;
+    },error =>{
+      console.log("error",error);
+    })
+  }
+  response : any;
+  classes : Array<any>;
   codeClasse :string ='';
   public classe:Classe ={code:'', nomination:''};
   //functions
   resetClasse(){
     this.classe = new Classe();
   }
-  public deleteClasse(code:string){
+  public deleteClasse(code:string) : void{
     let response = confirm('Voulez vous supprimer cette classe !');
     if(response == true){
-      let index = this.classes.findIndex((t)=> t.code == code);
-      this.classes.splice(index,1);
-      this.alerter('Suppression de la classe ' + this.classes[index].nomination + ' avec succès');
+      this.serviceClasse.deleteOne(code).subscribe(data =>{
+        console.log(data,'data');
+        let index = this.classes.findIndex((t)=> t.code == code);
+        this.classes.splice(index,1);
+        this.alerter('Suppression de la classe avec succès');
+      },error=>{
+        this.alerter('Erreur de suppression');
+        console.log('error',error);
+      });
     }else{
-      return ;
+      
     }
   }
-  public editClasse(code:string){
-    let item = this.classes.find((t)=> t.code == code);
-    this.classe  = new Classe(item?.code,item?.nomination);
+  public editClasse(classe:Classe){
+    console.log('classe',classe);
+    this.classe  = new Classe(classe?._id,classe?.code,classe?.nomination);
+    console.log('classe',this.classe)
   }
-  public saveClasse(code:string){
+  public saveClasse(_id:string){
      // controls
-     let indexElement = this.classes.findIndex((cla) => cla.code == code);
-     if(indexElement >= 0){
+     let indexElement = this.classes.findIndex((cla) => cla._id == _id);
+     if(indexElement  >= 0){
        // edit
-       this.classes[indexElement].code=this.classe.code;
-       this.classes[indexElement].nomination=this.classe.nomination;
-       this.alerter('Modification avec succès !');
+       let classe = this.classe;
+       this.serviceClasse.updateOne(_id,this.classe).subscribe(data=>{
+        this.classes[indexElement]=classe;
+        console.log(data);
+        this.alerter('Modification avec succès !');
+       },error=>{
+        console.log(error);
+        this.alerter('Erreur Modification !');
+       })
      }else{
        // add new
-       let classe=this.classe;
-       this.classes.push({
-         code: classe.code,
-         nomination: classe.nomination,
-       });
-       this.alerter('Enregistrement avec succès !');
+       this.serviceClasse.insertOne(this.classe).subscribe(data=>{
+        this.classes.push(data);
+        console.log(data);
+        this.alerter('Enregistrement avec succès !');
+       },error =>{
+        this.alerter('Erreur save data !');
+       })
   }
   this.resetClasse();
   }

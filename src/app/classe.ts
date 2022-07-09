@@ -1,6 +1,7 @@
 export class Classe {
     constructor(
-        public code :string ='',
-        public nomination:string = ''
+        public _id?: any,
+        public code: string ='',
+        public nomination: string =''
     ){}
 }

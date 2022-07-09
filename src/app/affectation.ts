@@ -3,8 +3,8 @@ import { Student } from "./student"
 
 export class Affectation {
     constructor(        
-        public id:number,
-        public eleve:Student,
-        public classe: Classe
+        public _id? : any,
+        public eleve : Student = new Student(),
+        public classe: Classe = new Classe()
         ){}
 }

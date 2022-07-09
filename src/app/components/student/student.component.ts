@@ -31,21 +31,24 @@ export class StudentComponent implements OnInit {
   }
   //functions
   public deleteEleve(id:string){
-    this.serviceEleve.deleteOne(id).subscribe(data=>{
-      console.log('data',data);
-      if(data.status == true){
-        let index = this.students.findIndex((ele)=> ele._id == id);
-        this.students.splice(index,1);
-        this.alerter('Suppression avec succès','success');
-      }
-    },error=>{
-      console.log(error);
-    });
+    let response = confirm('Voulez vous vraiment supprimer cet element !');
+    if(response == true){
+      let index = this.students.findIndex((ele)=> ele._id == id);
+      this.students.splice(index,1);
+      this.serviceEleve.deleteOne(id).subscribe(data=>{
+        console.log('data',data);
+        if(data.status == true){
+          this.alerter('Suppression avec succès','success');
+        }
+      },error=>{
+        console.log(error);
+      });
+    }
   }
   public edit(id:string){
     let item = this.students.find((student)=> student._id == id);
     console.log(item);
-    this.student  = new Student(item?._id,item?.matricule,item?.nom,item?.prenom,item?.date_naiss);
+    this.student  = new Student(item?._id,item?.matricule,item?.nom,item?.prenom,item?.date_naiss.toString().split('T')[0]);
     console.log(this.student,'new student');
   }
   saveEleve(id:string){
