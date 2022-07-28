@@ -9,12 +9,12 @@ To facilitate enrollment in his school, he would also like to have a part in the
 Finally, for a first version of this platform he will need a part where he can list all the students and classes existing in his school.
 ## A faire
 
-Make an Angular page, for the moment no need to put a Backend
+### Make an Angular page, for the moment no need to put a Backend
 
-Store the information in a table. The CRUD operations will be done in the table
+#### Store the information in a table. The CRUD operations will be done in the table
 
-Put the project on Github
+### Put the project on Github
 
-Add on the Github project, a README file that documents the project
+### Add on the Github project, a README file that documents the project
 
-Share the link of the Github project as an assignment
+### Share the link of the Github project as an assignment
