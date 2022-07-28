@@ -15,6 +15,8 @@ import { AffectationComponent } from './components/affectation/affectation.compo
 import { ClasseComponent } from './components/classe/classe.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthserviceService } from './services/authservice.service';
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthserviceService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

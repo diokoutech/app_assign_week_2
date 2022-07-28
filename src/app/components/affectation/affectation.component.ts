@@ -13,7 +13,7 @@ import { ClasseService } from 'src/app/services/classe.service';
 })
 export class AffectationComponent implements OnInit {
   private response:any;
-  constructor(private serviceAffectation:AffectationService,private serviceEleve:EleveService,private serviceClasse:ClasseService) { 
+  constructor(private serviceAffectation:AffectationService,private serviceEleve:EleveService,private serviceClasse:ClasseService) {
     this.affectations = Array<Affectation>();
     this.students = Array<Student>();
     this.classes = Array<Classe>();
@@ -23,7 +23,6 @@ export class AffectationComponent implements OnInit {
    this.getAll();
     this.serviceEleve.getAll().subscribe(data=>{
       this.response = data;
-      console.log(data,'eleves');
       this.students = this.response;
     },error=>{
       console.log(error);
@@ -31,7 +30,6 @@ export class AffectationComponent implements OnInit {
     this.serviceClasse.getAll().subscribe(data=>{
       this.response = data;
       this.classes = this.response;
-      console.log('classe',data);
     },error=>{
       console.log(error);
     });
@@ -47,7 +45,6 @@ export class AffectationComponent implements OnInit {
     this.serviceAffectation.findAll().subscribe(data=>{
       this.response = data;
       this.affectations = this.response;
-      console.log(data,'affectations');
     },error=>{
       console.log(error);
     });
@@ -59,12 +56,7 @@ export class AffectationComponent implements OnInit {
       let index = this.affectations.findIndex((ele) => ele._id == id);
       this.affectations.splice(index,1);
       this.serviceAffectation.deleteOne(id).subscribe(data=>{
-        console.log(data);
-        // if(data.status == true){
           this.alerter('Suppression de l\'affectation avec succès !');
-        // }else{
-        //   this.alerter('Erreur de suppression !');
-        // }
       },error=>{
         console.log(error);
       });
@@ -77,12 +69,15 @@ export class AffectationComponent implements OnInit {
       "eleve" : eleve,
       "classe" : classe
     };
-    console.log(affect);
     if(id == null){
       this.serviceAffectation.insertOne(affect).subscribe(data=>{
-        this.affectations.push(data);
         console.log(data);
-        this.alerter('Ajout Succes !');
+        if(data._id){
+          this.affectations.push(data);
+          this.alerter('Ajout Succes !');
+        }else{
+          this.alerter('Erreur ajout duplication !');
+        }
         this.resetAffectation();
       },error=>{
         this.alerter('Erreur ajout !');
@@ -90,7 +85,7 @@ export class AffectationComponent implements OnInit {
       })
     }else{
       this.serviceAffectation.updateOne(id,affect).subscribe(data=>{
-        console.log(data);
+        let response = {...data};
         this.getAll();
         this.alerter('Modification Success !');
         this.resetAffectation();

@@ -1,13 +1,69 @@
 <div class="container">
-    <div class="flex justify-around flex-wrap p-5  items-center text-white">
-        <div class="w-64 h-64 bg-yellow-500 rounded-full flex items-center m-4 justify-center shadow-md text-2xl">
-            <a href="/eleve"> <mat-icon>person</mat-icon> Eleves </a>  
-        </div>
-        <div class="w-64 h-64 bg-yellow-500 rounded-full flex items-center m-4 justify-center shadow-md text-2xl">
-            <a href="/classe"><mat-icon>school</mat-icon> Classes</a>  
-        </div>
-        <div class="w-64 h-64 bg-yellow-500 rounded-full flex items-center m-4 justify-center shadow-md text-2xl">
-            <a href="/affectation"><mat-icon>work</mat-icon> Affectations </a>  
-        </div>
+  <div class="flex justify-around flex-wrap p-5 items-center" style="height: 60vh !important">
+    <form action="#" (ngSubmit)="submit()" method="post" class="sm:w-full lg:w-2/4" *ngIf="show == true">
+      <h1 align="center">Authentification</h1>
+      <p>
+        <label for="email">Email</label>
+        <input required [(ngModel)]="email" type="email" autocomplete="off" name="email" id="email" autocomplete="none"
+          placeholder="Votre email"
+          class="shadow-sm border-b-2 block w-full h-38 border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4" />
+      </p>
+      <p>
+        <label for="email">Password</label>
+        <input required [(ngModel)]="password" type="password" name="password" autocomplete="none"
+          placeholder="Votre mot de passe" id="password"
+          class="border-b-2 w-full block border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4 shadow-sm" />
+      </p>
+      <p class="m-4 mx-auto">
+        <button mat-stroked-button type="submit"
+          class="bg-yellow-500 hover:bg-gray-800 text-white p-1 text-lg rounded-md flex focus:outline-none focus:shadow-md justify-center items-center my-4">
+          <mat-icon>login</mat-icon> Connexion
+        </button>
+      </p>
+      <button type="button" mat-button (click)="show = !show;InitForm()">Pas de compte ! S'inscrire</button>
+    </form>
+    <div>
+      <img src="./../../../assets/home.svg" width="500px" class="shadow-lg" alt="home page" >
     </div>
+    <form action="" method="post" (ngSubmit)="register()" *ngIf="show == false;" class="sm:w-full lg:w-2/4">
+      <h1 align="center">Inscription</h1>
+      <p>
+        <label for="nom">Name</label>
+        <input required [(ngModel)]="nom" type="nom" name="nom" id="nom" autocomplete="none"
+          placeholder="Votre nom"
+          class="shadow-sm border-b-2 block w-full h-38 border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4" />
+      </p>
+      <p>
+        <label for="prenom">prenom</label>
+        <input required [(ngModel)]="prenom" type="prenom" name="prenom" id="prenom" autocomplete="none"
+          placeholder="Votre prenom"
+          class="shadow-sm border-b-2 block w-full h-38 border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4" />
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input required [(ngModel)]="email" autocomplete="off" type="email" name="email" id="email"
+          placeholder="Votre email"
+          class="shadow-sm border-b-2 block w-full h-38 border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4" />
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input required [(ngModel)]="password" type="password" name="password" autocomplete="none"
+          placeholder="Votre mot de passe" id="password"
+          class="border-b-2 w-full block border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4 shadow-sm" />
+      </p>
+      <p>
+        <label for="password_confirm">Confirmation password</label>
+        <input required [(ngModel)]="password_confirm" type="password" name="password_confirm" autocomplete="none"
+          placeholder="Votre mot de passe" id="password_confirm"
+          class="border-b-2 w-full block border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4 shadow-sm" />
+        </p>
+      <p class="m-4 mx-auto">
+        <button type="submit"
+          class="bg-yellow-500 hover:bg-gray-800 text-white p-1 text-lg rounded-md flex focus:outline-none focus:shadow-md justify-center items-center my-4">
+          <mat-icon>add_box</mat-icon> Register
+        </button>
+      </p>
+      <button type="button" mat-button (click)="show = !show; InitForm()">Connexion</button>
+    </form>
+  </div>
 </div>

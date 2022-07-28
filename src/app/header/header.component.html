@@ -2,7 +2,7 @@
   <span class="text-2xl p-4">
     <a href="/">Sama School App</a>
   </span>
-  <nav>
+  <nav class="w-2/4">
     <ul class="flex items-center p-4 justify-center">
       <li>
       <a [routerLink]="['/eleve']" routerLinkActive="text-yellow-500" mat-button><mat-icon>person</mat-icon> Eleves </a>
@@ -15,4 +15,8 @@
         </li>
     </ul>
   </nav>
+  <div class="text-xl flex justify-around items-center p-2">
+    <!-- <span class="flex m-1 justify-around items-center"><mat-icon>person</mat-icon></span> -->
+    <button title="Se deconnecter" class="flex m-1 justify-around items-center" (click)="logout()" type="button"><mat-icon>logout</mat-icon> </button>
+  </div>
 </div>

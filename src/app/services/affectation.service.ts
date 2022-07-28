@@ -13,8 +13,8 @@ export class AffectationService {
   deleteOne(id:string){
     return this.clientHttp.delete(this.url + id);
   }
-  insertOne(affectation:Affectation){
-    return this.clientHttp.post(this.url,{
+  insertOne(affectation:Affectation) {
+    return this.clientHttp.post<Affectation>(this.url,{
       "eleve" :affectation.eleve,
       "classe" :affectation.classe,
     });
