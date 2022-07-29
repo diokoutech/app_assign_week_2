@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Classe } from '../classe';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ClasseService {
 
-  private url="http://localhost:4000/classes/";
+  private url= environment.api_url + "classes";
   constructor(private clientHttp: HttpClient) { }
-  // get all eleves 
+  // get all eleves
   getAll(){
     return this.clientHttp.get<Classe>(this.url);
   }

@@ -15,7 +15,7 @@
           class="border-b-2 w-full block border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4 shadow-sm" />
       </p>
       <p class="m-4 mx-auto">
-        <button mat-stroked-button type="submit"
+        <button mat-stroked-button type="submit" [disabled]="!email && !password"
           class="bg-yellow-500 hover:bg-gray-800 text-white p-1 text-lg rounded-md flex focus:outline-none focus:shadow-md justify-center items-center my-4">
           <mat-icon>login</mat-icon> Connexion
         </button>

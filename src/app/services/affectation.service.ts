@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Affectation } from '../affectation';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AffectationService {
-  private url ="http://localhost:4000/affectations/";
+  private url = environment.api_url + "affectations";
+
   constructor(private clientHttp:HttpClient) { }
   findAll(){
     return this.clientHttp.get<Affectation>(this.url);

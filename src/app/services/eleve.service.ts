@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../student';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class EleveService {
-  private url="http://localhost:4000/eleves/";
+
+  private url: string = environment.api_url + "eleves";
+
   constructor(private clientHttp: HttpClient) { }
-  // get all eleves 
+  // get all eleves
   getAll(){
     return this.clientHttp.get<Student>(this.url);
   }

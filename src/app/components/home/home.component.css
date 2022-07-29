@@ -17,3 +17,7 @@
   animation-name: pulse;
   animation-fill-mode: both;
 }
+button:disabled{
+  color:white !important;
+  cursor: not-allowed;
+}

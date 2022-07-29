@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
     result.subscribe((data)=>{
       let response = data;
       if(response.status ==false){
-        this.InitForm();
         this.alerter("Erreur login : " + response.message);
       }else{
         this.alerter("Login Successfully !");
@@ -36,7 +35,9 @@ export class HomeComponent implements OnInit {
         console.log(response);
       }
     },(error)=>{
-      console.log(error);
+      this.alerter("Erreur Server please contact SAV !");
+      this.InitForm();
+      console.log(error.message);
     });
   }
   logger(session : any){
