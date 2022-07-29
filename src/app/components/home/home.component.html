@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="flex justify-around flex-wrap p-5 items-center" style="height: 60vh !important">
-    <form action="#" (ngSubmit)="submit()" method="post" class="sm:w-full lg:w-2/4" *ngIf="show == true">
+  <div class="flex justify-around flex-wrap p-5 items-center" style="height: calc(100vh - 100px)  !important">
+    <form action="#" (ngSubmit)="submit()" id="form" method="post" class="sm:w-full lg:w-2/4" *ngIf="show == true">
       <h1 align="center">Authentification</h1>
       <p>
         <label for="email">Email</label>
@@ -20,7 +20,7 @@
           <mat-icon>login</mat-icon> Connexion
         </button>
       </p>
-      <button type="button" mat-button (click)="show = !show;InitForm()">Pas de compte ! S'inscrire</button>
+      <button type="button" mat-button (click)="show = !show;InitForm()">&rarr; Pas de compte ! S'inscrire</button>
     </form>
     <div>
       <img src="./../../../assets/home.svg" width="500px" class="shadow-lg" alt="home page" >
@@ -63,7 +63,7 @@
           <mat-icon>add_box</mat-icon> Register
         </button>
       </p>
-      <button type="button" mat-button (click)="show = !show; InitForm()">Connexion</button>
+      <button type="button" mat-button (click)="show = !show; InitForm()"> &larr; Déjà un compte </button>
     </form>
   </div>
 </div>
