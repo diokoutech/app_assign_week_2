@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../student';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class EleveService {
 
   private url: string = environment.api_url + "eleves";
-
+  public isLoading:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private clientHttp: HttpClient) { }
   // get all eleves
   getAll(){

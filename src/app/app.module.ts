@@ -14,9 +14,11 @@ import { StudentComponent } from './components/student/student.component';
 import { AffectationComponent } from './components/affectation/affectation.component';
 import { ClasseComponent } from './components/classe/classe.component';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthserviceService } from './services/authservice.service';
 import { AuthGuard } from './auth.guard';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { InterceptorService } from './interceptors/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +38,11 @@ import { AuthGuard } from './auth.guard';
     MatBadgeModule,
     FormsModule,
     HttpClientModule,
+    MatProgressBarModule
   ],
-  providers: [AuthserviceService,AuthGuard],
+  providers: [
+    AuthserviceService,AuthGuard, {provide: HTTP_INTERCEPTORS,useClass: InterceptorService,multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

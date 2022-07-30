@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   password_confirm:string = '';
   show: boolean = true;
 
-  constructor(private authService: AuthserviceService,private router: Router) { }
+  constructor(public authService: AuthserviceService,private router: Router) { }
 
   ngOnInit(): void {
   }
