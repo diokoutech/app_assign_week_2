@@ -11,7 +11,7 @@ export class StudentComponent implements OnInit {
   response: any;
   student:Student ={nom:'',date_naiss:'',matricule:'',prenom: ''};
   students : Array<any>;
-  constructor(private serviceEleve:EleveService) {
+  constructor(public serviceEleve:EleveService) {
     this.students = new Array<Student>();
    }
 

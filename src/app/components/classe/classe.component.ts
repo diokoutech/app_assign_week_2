@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./classe.component.css']
 })
 export class ClasseComponent implements OnInit {
-  constructor(private serviceClasse:ClasseService) { 
+  constructor(public serviceClasse:ClasseService) {
     this.classes = new Array<Classe>();
   }
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class ClasseComponent implements OnInit {
         console.log('error',error);
       });
     }else{
-      
+
     }
   }
   public editClasse(classe:Classe){

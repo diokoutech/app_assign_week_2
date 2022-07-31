@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class EleveService {
 
-  private url: string = environment.api_url + "eleves";
+  private url: string = environment.api_url + "eleves/";
   public isLoading:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private clientHttp: HttpClient) { }
   // get all eleves

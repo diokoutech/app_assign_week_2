@@ -1,3 +1,6 @@
+<div class="loader" *ngIf="serviceClasse.isLoading | async ">
+  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+</div>
 <div class="flex flex-wrap justify-between items-center">
     <!-- table -->
     <table class="table shadow-md table-auto border border-collapse	p-2 text-center w-2/4">

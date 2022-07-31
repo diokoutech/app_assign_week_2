@@ -1,4 +1,7 @@
-  <div class="flex flex-wrap justify-between">
+<div class="loader" *ngIf="serviceAffectation.isLoading | async ">
+  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+</div>
+  <div class="flex flex-wrap justify-between m-4">
     <!-- table affectation -->
     <table class="table shadow-md table-auto border border-collapse	text-center w-3/4">
       <thead>

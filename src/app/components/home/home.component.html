@@ -1,6 +1,6 @@
-<div class="loader" *ngIf="authService.isLoading | async ">
-  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-</div>
+  <div class="loader" *ngIf="authService.isLoading | async ">
+    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+  </div>
 <div class="container">
   <div class="flex justify-around flex-wrap p-5 items-center" style="height: calc(100vh - 100px)  !important">
     <form action="#" (ngSubmit)="submit()" id="form" method="post" class="sm:w-full lg:w-2/4" *ngIf="show == true">
@@ -18,7 +18,7 @@
           class="border-b-2 w-full block border-gray-800 p-1 my-4 focus:outline-none focus:border-yellow-500 focus:border-b-4 shadow-sm" />
       </p>
       <p class="m-4 mx-auto">
-        <button mat-stroked-button type="submit" [disabled]="!email && !password"
+        <button mat-stroked-button type="submit" [disabled]="!email"
           class="bg-yellow-500 hover:bg-gray-800 text-white p-1 text-lg rounded-md flex focus:outline-none focus:shadow-md justify-center items-center my-4">
           <mat-icon>login</mat-icon> Connexion
         </button>

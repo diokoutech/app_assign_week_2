@@ -13,7 +13,7 @@ import { ClasseService } from 'src/app/services/classe.service';
 })
 export class AffectationComponent implements OnInit {
   private response:any;
-  constructor(private serviceAffectation:AffectationService,private serviceEleve:EleveService,private serviceClasse:ClasseService) {
+  constructor(public serviceAffectation:AffectationService,private serviceEleve:EleveService,private serviceClasse:ClasseService) {
     this.affectations = Array<Affectation>();
     this.students = Array<Student>();
     this.classes = Array<Classe>();
