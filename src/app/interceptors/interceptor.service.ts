@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, Observable } from 'rxjs';
+import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { AffectationService } from '../services/affectation.service';
 import { AuthserviceService } from '../services/authservice.service';
 import { ClasseService } from '../services/classe.service';
@@ -18,13 +18,12 @@ export class InterceptorService implements HttpInterceptor {
     public authService: AuthserviceService,
     public eleveService: EleveService,
     public classeService: ClasseService,
-    public affectationService:AffectationService
+    public affectationService:AffectationService,
   ) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log(req);
     this.authService.isLoading.next(true);
     this.eleveService.isLoading.next(true);
     this.classeService.isLoading.next(true);

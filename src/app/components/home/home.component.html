@@ -1,10 +1,13 @@
   <div class="loader" *ngIf="authService.isLoading | async ">
-    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+    <mat-progress-bar mode="query" color="accent"></mat-progress-bar>
   </div>
 <div class="container">
   <div class="flex justify-around flex-wrap p-5 items-center" style="height: calc(100vh - 100px)  !important">
     <form action="#" (ngSubmit)="submit()" id="form" method="post" class="sm:w-full lg:w-2/4" *ngIf="show == true">
       <h1 align="center">Authentification</h1>
+      <p *ngIf="msg != ''" class="text-gray-800 shadow-md p-2 border-2 border-yellow-500">
+        {{ msg }}
+      </p>
       <p>
         <label for="email">Email</label>
         <input required [(ngModel)]="email" type="email" autocomplete="off" name="email" id="email" autocomplete="none"
@@ -19,7 +22,7 @@
       </p>
       <p class="m-4 mx-auto">
         <button mat-stroked-button type="submit" [disabled]="!email"
-          class="bg-yellow-500 hover:bg-gray-800 text-white p-1 text-lg rounded-md flex focus:outline-none focus:shadow-md justify-center items-center my-4">
+          class="bg-yellow-500 hover:bg-gray-800 transition ease-in-out delay-150 text-white p-1 text-lg rounded-md flex focus:outline-none focus:shadow-md justify-center items-center my-4">
           <mat-icon>login</mat-icon> Connexion
         </button>
       </p>

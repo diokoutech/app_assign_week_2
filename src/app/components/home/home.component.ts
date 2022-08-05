@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   password:string = '';
   password_confirm:string = '';
   show: boolean = true;
+  msg:string = '';
 
   constructor(public authService: AuthserviceService,private router: Router) { }
 
@@ -65,6 +66,8 @@ export class HomeComponent implements OnInit {
     const result = await this.authService.register(item);
     result.subscribe((data)=>{
       console.log(data);
+      this.msg="Inscription avec succès. Veuillez maintenant vous connecter !";
+      this.show= true;
       this.alerter("Inscription avec succès !");
       this.InitForm();
     },(error)=>{
