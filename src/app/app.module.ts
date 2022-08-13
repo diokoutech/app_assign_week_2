@@ -19,6 +19,8 @@ import { AuthserviceService } from './services/authservice.service';
 import { AuthGuard } from './auth.guard';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from './interceptors/interceptor.service';
+import { LayoutbackComponent } from './layoutback/layoutback.component';
+import { HeaderfrontComponent } from './headerfront/headerfront.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { InterceptorService } from './interceptors/interceptor.service';
     StudentComponent,
     AffectationComponent,
     ClasseComponent,
-    HomeComponent
+    HomeComponent,
+    LayoutbackComponent,
+    HeaderfrontComponent
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('user',JSON.stringify(session.user));
     localStorage.setItem('token',session.token);
     localStorage.setItem('isLogin','true');
-    this.router.navigate(['/eleve']);
+    this.router.navigate(['/backoffice/eleve']);
   }
   InitForm(){
     this.email = '';

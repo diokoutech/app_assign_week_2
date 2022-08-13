@@ -5,12 +5,19 @@ import { AffectationComponent } from './components/affectation/affectation.compo
 import { ClasseComponent } from './components/classe/classe.component';
 import { HomeComponent } from './components/home/home.component';
 import { StudentComponent } from './components/student/student.component';
+import { LayoutbackComponent } from './layoutback/layoutback.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'classe', component: ClasseComponent,canActivate: [AuthGuard] },
-  { path: 'affectation', component: AffectationComponent,canActivate: [AuthGuard] },
-  { path: 'eleve', component: StudentComponent,canActivate: [AuthGuard] },
+  { path: 'backoffice', component: LayoutbackComponent,
+  children: [
+    { path: 'classe', component: ClasseComponent},
+    { path: 'affectation', component: AffectationComponent },
+    { path: 'eleve', component: StudentComponent,},
+  ],
+  canActivate: [AuthGuard] 
+  },
+  { path : '**', pathMatch: 'full',redirectTo: ''}
 ];
 
 @NgModule({
