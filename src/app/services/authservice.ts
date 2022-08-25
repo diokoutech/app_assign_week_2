@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthserviceService {
+export class Authservice {
   private url = environment.api_url + "auth/login";
   private url_register = environment.api_url +"auth/register";
   public isLoading:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

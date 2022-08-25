@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { AffectationService } from '../services/affectation.service';
-import { AuthserviceService } from '../services/authservice.service';
+import { Authservice } from '../services/authservice';
 import { ClasseService } from '../services/classe.service';
 import { EleveService } from '../services/eleve.service';
 @Injectable({
@@ -15,7 +15,7 @@ import { EleveService } from '../services/eleve.service';
 })
 export class InterceptorService implements HttpInterceptor {
   constructor(
-    public authService: AuthserviceService,
+    public authService: Authservice,
     public eleveService: EleveService,
     public classeService: ClasseService,
     public affectationService:AffectationService,

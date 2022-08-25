@@ -10,7 +10,7 @@ export class EleveService {
 
   private url: string = environment.api_url + "eleves/";
   public isLoading:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private myToken: string = localStorage.getItem('token') ?? 'test';
+  private myToken: string = localStorage.getItem('token') ?? '';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

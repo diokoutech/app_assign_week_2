@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthserviceService } from 'src/app/services/authservice.service';
+import { Authservice } from 'src/app/services/authservice';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   show: boolean = true;
   msg:string = '';
 
-  constructor(public authService: AuthserviceService,private router: Router) { }
+  constructor(public authService: Authservice, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +29,8 @@ export class HomeComponent implements OnInit {
     result.subscribe((data)=>{
       let response = data;
       if(response.status ==false){
-        this.alerter("Erreur login : " + response.message);
+        console.log(data);
+        this.alerter("Erreur login : " + response.error);
       }else{
         this.alerter("Login Successfully !");
         this.logger(response.session);

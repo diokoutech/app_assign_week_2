@@ -15,7 +15,7 @@ import { AffectationComponent } from './components/affectation/affectation.compo
 import { ClasseComponent } from './components/classe/classe.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthserviceService } from './services/authservice.service';
+import { Authservice } from './services/authservice';
 import { AuthGuard } from './auth.guard';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from './interceptors/interceptor.service';
@@ -45,7 +45,7 @@ import { HeaderfrontComponent } from './headerfront/headerfront.component';
     MatProgressBarModule
   ],
   providers: [
-    AuthserviceService,AuthGuard, {provide: HTTP_INTERCEPTORS,useClass: InterceptorService,multi: true}
+    Authservice,AuthGuard, {provide: HTTP_INTERCEPTORS,useClass: InterceptorService,multi: true}
   ],
   bootstrap: [AppComponent]
 })
